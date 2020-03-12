@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,25 +27,30 @@ namespace View
 
         }
 
-        private void ConvertFahrenheit(object sender, RoutedEventArgs e)
+        private void SliderValueChanged(object sender, RoutedEventArgs e)
         {
-            var doubleFaren = double.Parse(FahrenheitBox.Text);
-            var celsius = (doubleFaren - 32) / 1.8;
+            var sliderValue = slider.Value;
+
+            CelsiusBox.Text = (sliderValue - 273.15).ToString();
+            FahrenheitBox.Text = ((sliderValue - 273.15)*1.8 + 32).ToString();
+        }
+    }
+    public class CelsiusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var kelvin = (double)value;
+            var celsius = kelvin - 273.15;
+
+            return celsius.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var celsius = double.Parse((string)value);
             var kelvin = celsius + 273.15;
-            CelsiusBox.Text = celsius.ToString();
-            KelvinBox.Text = kelvin.ToString();
-        }
-        private void ConvertCelsius(object sender, RoutedEventArgs e)
-        {
-            var doubleCelsius = double.Parse(CelsiusBox.Text);
-            var faren = (doubleCelsius * 1.8) + 32;
-            FahrenheitBox.Text = faren.ToString();
-            KelvinBox.Text = (doubleCelsius+273.15).ToString();
-        }
-        private void ConvertKelvin(object sender, RoutedEventArgs e) {
-            var kelvin = double.Parse(KelvinBox.Text);
-            CelsiusBox.Text = (kelvin - 273.15).ToString();
-            FahrenheitBox.Text = ((kelvin - 273.15) * 1.8 + 32).ToString();
+
+            return kelvin;
         }
     }
 }
