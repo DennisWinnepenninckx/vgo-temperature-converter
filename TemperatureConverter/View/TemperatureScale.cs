@@ -49,12 +49,12 @@ namespace View
         public string Name => "Fahrenheit";
         public double ConvertFromKelvin(double temperature)
         {
-            return (temperature - 273.15)/1.8 - 32;
+            return temperature * 1.8 - 459.67; ;
         }
 
         public double ConvertToKelvin(double temperature)
         {
-            return (temperature + 273.15) * 1.8 + 32;
+            return (temperature + 459.67) / 1.8;
         }
     }
 }

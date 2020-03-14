@@ -28,40 +28,10 @@ namespace View
         }
 
     }
-    public class CelsiusConverter : IValueConverter
+    public class TemperatureConverter : ITemperatureScale
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var kelvin = (double)value;
-            var celsius = kelvin - 273.15;
+        public TemperatureConverter() { }
+        public write TemperatureScale;
 
-            return celsius.ToString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var celsius = double.Parse((string)value);
-            var kelvin = celsius + 273.15;
-
-            return kelvin;
-        }
-    }
-    public class FahrenheitConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var kelvin = (double)value;
-            var Fahrenheit = (kelvin - 273.15) * 1.8 + 32;
-
-            return Fahrenheit.ToString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var celsius = double.Parse((string)value);
-            var Fahrenheit = (celsius + 273.15)/1.8 - 32;
-
-            return Fahrenheit;
-        }
     }
 }
