@@ -34,6 +34,7 @@
             <Setter Property="Padding" Value="8" />
         </Style>
         <local:CelsiusConverter x:Key="CelsiusConverterObject" />
+        <local:FahrenheitConverter x:Key="FahrenheitConverterObject" />
     </Window.Resources>
     <StackPanel>
         <Grid>
@@ -45,7 +46,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyler}" />
-            <TextBox Grid.Row="1" x:Name="CelsiusBox" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter=CelsiusConverterObject}" Style="{StaticResource textBoxStyle}" />
+            <TextBox Grid.Row="1" x:Name="CelsiusBox" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CelsiusConverterObject}}" Style="{StaticResource textBoxStyle}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -56,7 +57,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyler}" />
-            <TextBox Grid.Row="1" x:Name="FahrenheitBox" Style="{StaticResource textBoxStyle}"/>
+            <TextBox Grid.Row="1" x:Name="FahrenheitBox" Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FahrenheitConverterObject}}"/>
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -69,6 +70,6 @@
             <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyler}" />
             <TextBox Grid.Row="1" x:Name="KelvinBox" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}"/>
         </Grid>
-        <Slider x:Name="slider" Minimum="0" Maximum="1000" ValueChanged="SliderValueChanged" />
+        <Slider x:Name="slider" Minimum="0" Maximum="1000" />
     </StackPanel>
 </Window>
