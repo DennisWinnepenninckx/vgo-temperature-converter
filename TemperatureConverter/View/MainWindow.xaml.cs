@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -25,13 +27,26 @@ namespace View
         {
             InitializeComponent();
 
+            this.DataContext = new ConverterViewModel();
+        }
+    }
+
+    public class TemperatureConverter : IValueConverter
+    {
+        public ITemperatureScale TemperatureScale { get; set; }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var kelvin = (double)value;
+
+            return this.TemperatureScale.ConvertFromKelvin(kelvin).ToString();
         }
 
-    }
-    public class TemperatureConverter : ITemperatureScale
-    {
-        public TemperatureConverter() { }
-        public write TemperatureScale;
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var temperature = double.Parse((string)value);
 
+            return this.TemperatureScale.ConvertToKelvin(temperature);
+        }
     }
 }
