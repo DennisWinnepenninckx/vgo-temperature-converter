@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,9 +45,11 @@ namespace View
             return temperature + 273.15;
         }
     }
+
     public class FahrenheitTemperatureScale : ITemperatureScale
     {
         public string Name => "Fahrenheit";
+
         public double ConvertFromKelvin(double temperature)
         {
             return temperature * 1.8 - 459.67; ;
