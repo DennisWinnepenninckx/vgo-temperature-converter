@@ -33,11 +33,9 @@
             <Setter Property="FontSize" Value="28" />
             <Setter Property="Padding" Value="8" />
         </Style>
-        <local:CelsiusConverter x:Key="CelsiusConverterObject" />
-        <local:FahrenheitConverter x:Key="FahrenheitConverterObject" />
     </Window.Resources>
     <StackPanel>
-        <Grid>
+        <Grid DataContext="{Binding Celsius}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -45,8 +43,8 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyler}" />
-            <TextBox Grid.Row="1" x:Name="CelsiusBox" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CelsiusConverterObject}}" Style="{StaticResource textBoxStyle}" />
+            <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyler}" />
+            <TextBox Grid.Row="1" x:Name="CelsiusBox" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -56,8 +54,8 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyler}" />
-            <TextBox Grid.Row="1" x:Name="FahrenheitBox" Style="{StaticResource textBoxStyle}" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FahrenheitConverterObject}}"/>
+            <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyler}" />
+            <TextBox Grid.Row="1" x:Name="FahrenheitBox" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
