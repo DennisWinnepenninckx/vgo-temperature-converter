@@ -41,7 +41,7 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="{Binding name}" Style="{StaticResource labelStyle}" />
+                        <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyle}" />
                         <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
                 </DataTemplate>
